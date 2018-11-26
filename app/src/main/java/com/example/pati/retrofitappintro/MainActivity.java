@@ -15,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
 
     private TextView textViewResult;
-
+    private EmployeeRestApi employeeRestApi;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,32 +28,59 @@ public class MainActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+        employeeRestApi = retrofit.create(EmployeeRestApi.class);
+        //createEmployee();
+        getAllEmployees();
 
-        Call<List<Employee>> call = jsonPlaceHolderApi.getAllEmployees();
+    }
+private void getAllEmployees(){
+    Call<List<Employee>> call = employeeRestApi.getAllEmployees();
 
-        call.enqueue(new Callback<List<Employee>>() {
+    call.enqueue(new Callback<List<Employee>>() {
+        @Override
+        public void onResponse(Call<List<Employee>> call, Response<List<Employee>> response) {
+
+            if(!response.isSuccessful()){
+                textViewResult.setText("Code: " + response.code());
+                return;
+            }
+            List<Employee> employees = response.body();
+
+            for(Employee employee: employees){
+                String content ="";
+                content +=employee.getId()+employee.getName()+employee.getSurname()+
+                        employee.getNickname()+employee.getPosition()+employee.getPassword()+
+                        employee.getIncome()+employee.getExpenditure();
+                textViewResult.append(content);
+            }
+
+        }
+
+        @Override
+        public void onFailure(Call<List<Employee>> call, Throwable t) {
+            textViewResult.setText(t.getMessage());
+        }
+    });
+}
+    private void createEmployee(){
+        Employee employee = new Employee("mark","nsjdgj","dhrerherh","erherhe","wehwrhwh",3553,5235);
+        Call<Employee> call= employeeRestApi.createEmployee(employee);
+        call.enqueue(new Callback<Employee>() {
             @Override
-            public void onResponse(Call<List<Employee>> call, Response<List<Employee>> response) {
-
+            public void onResponse(Call<Employee> call, Response<Employee> response) {
                 if(!response.isSuccessful()){
                     textViewResult.setText("Code: " + response.code());
                     return;
                 }
-                List<Employee> employees = response.body();
-
-                for(Employee employee: employees){
-                    String content ="";
-                    content +=employee.getId()+employee.getName()+employee.getSurname()+
-                            employee.getNickname()+employee.getPosition()+employee.getPassword()+
-                            employee.getIncome()+employee.getExpenditure();
-                    textViewResult.append(content);
-                }
+                Employee employeeRespone =response.body();
+                String content ="";
+                content +="Code:"+response.code()+employeeRespone.getExpenditure()+employeeRespone.getIncome()+employeeRespone.getPassword()+employeeRespone.getPosition()+employeeRespone.getNickname()+employeeRespone.getSurname()+employeeRespone.getName()+employeeRespone.getId();
+                textViewResult.setText(content);
 
             }
 
             @Override
-            public void onFailure(Call<List<Employee>> call, Throwable t) {
+            public void onFailure(Call<Employee> call, Throwable t) {
                 textViewResult.setText(t.getMessage());
             }
         });

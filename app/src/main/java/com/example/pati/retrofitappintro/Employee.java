@@ -7,6 +7,7 @@ package com.example.pati.retrofitappintro;
 public class Employee {
 
     private Long id;
+    private Long employeeId;
     private String name;
     private String surname;
     private String nickname;
@@ -14,6 +15,24 @@ public class Employee {
     private String password;
     private double income;
     private double expenditure;
+
+    public Employee( String name, String surname, String nickname, String password, String position, double income, double expenditure) {
+        this.name = name;
+        this.surname = surname;
+        this.nickname = nickname;
+        this.position = position;
+        this.password = password;
+        this.income = income;
+        this.expenditure = expenditure;
+    }
+
+    public Long getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
+    }
 
     public Long getId() {
         return id;
