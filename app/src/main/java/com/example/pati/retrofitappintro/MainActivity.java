@@ -2,6 +2,9 @@ package com.example.pati.retrofitappintro;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.List;
@@ -16,12 +19,17 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView textViewResult;
     private EmployeeRestApi employeeRestApi;
+    private EditText loginEdit, balanceEdit;
+    private Button sendButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        loginEdit=(EditText) findViewById(R.id.login);
+        balanceEdit=(EditText) findViewById(R.id.balance);
         textViewResult=findViewById(R.id.text_view_result);
+        sendButton = (Button) findViewById(R.id.sendButton);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://192.168.1.103:8080/")
@@ -29,10 +37,18 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         employeeRestApi = retrofit.create(EmployeeRestApi.class);
-        //createEmployee();
-        getAllEmployees();
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createEmployee();
+                //  getAllEmployees();
+            }
+        });
+
 
     }
+
+
 private void getAllEmployees(){
     Call<List<Employee>> call = employeeRestApi.getAllEmployees();
 
@@ -49,8 +65,8 @@ private void getAllEmployees(){
             for(Employee employee: employees){
                 String content ="";
                 content +=employee.getId()+employee.getName()+employee.getSurname()+
-                        employee.getNickname()+employee.getPosition()+employee.getPassword()+
-                        employee.getIncome()+employee.getExpenditure();
+                        employee.getLogin()+employee.getPosition()+employee.getPassword()+
+                        employee.getEmail()+employee.getBalanace();
                 textViewResult.append(content);
             }
 
@@ -63,7 +79,7 @@ private void getAllEmployees(){
     });
 }
     private void createEmployee(){
-        Employee employee = new Employee("mark","nsjdgj","dhrerherh","erherhe","wehwrhwh",3553,5235);
+        Employee employee = new Employee("markus","Gora",loginEdit.getText().toString(),"stolarz","mojpassword","ewgwe//@gmail.com",Double.parseDouble(balanceEdit.getText().toString()));
         Call<Employee> call= employeeRestApi.createEmployee(employee);
         call.enqueue(new Callback<Employee>() {
             @Override
@@ -74,7 +90,7 @@ private void getAllEmployees(){
                 }
                 Employee employeeRespone =response.body();
                 String content ="";
-                content +="Code:"+response.code()+employeeRespone.getExpenditure()+employeeRespone.getIncome()+employeeRespone.getPassword()+employeeRespone.getPosition()+employeeRespone.getNickname()+employeeRespone.getSurname()+employeeRespone.getName()+employeeRespone.getId();
+                content +="Code:"+response.code()+employeeRespone.getBalanace()+employeeRespone.getPassword()+employeeRespone.getPosition()+employeeRespone.getLogin()+employeeRespone.getEmail()+employeeRespone.getSurname()+employeeRespone.getName()+employeeRespone.getId();
                 textViewResult.setText(content);
 
             }
