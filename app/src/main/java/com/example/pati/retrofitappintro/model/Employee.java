@@ -1,4 +1,4 @@
-package com.example.pati.retrofitappintro;
+package com.example.pati.retrofitappintro.model;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -1,4 +1,6 @@
-package com.example.pati.retrofitappintro;
+package com.example.pati.retrofitappintro.service;
+
+import com.example.pati.retrofitappintro.model.Employee;
 
 import java.util.List;
 

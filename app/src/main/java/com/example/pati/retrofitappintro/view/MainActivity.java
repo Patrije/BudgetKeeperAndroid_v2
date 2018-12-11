@@ -1,4 +1,4 @@
-package com.example.pati.retrofitappintro;
+package com.example.pati.retrofitappintro.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,6 +6,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.pati.retrofitappintro.R;
+import com.example.pati.retrofitappintro.model.Employee;
+import com.example.pati.retrofitappintro.service.EmployeeRestApi;
+
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
