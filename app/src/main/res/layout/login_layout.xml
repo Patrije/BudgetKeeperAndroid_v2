@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/theme_cash">
+
+    <View
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        android:alpha="0.5"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Budget Keeper"
+        android:textSize="50sp"
+        android:id="@+id/textView"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="15dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Sign in "
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
+        android:hint="  Enter login"
+        android:textColorHint="#999999"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="47dp"
+        android:background="#80200500"
+        android:padding="7dp"/>
+
+    <EditText
+        android:id="@+id/pass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:hint=" Enter password"
+        android:drawableLeft="@drawable/ic_https_black_24dp"
+        android:textSize="20sp"
+        android:textColorHint="#999999"
+        android:textColor="#FFFFFF"
+        android:layout_below="@+id/login"
+        android:layout_alignLeft="@+id/login"
+        android:layout_alignStart="@+id/login"
+        android:layout_alignRight="@+id/login"
+        android:layout_alignEnd="@+id/login"
+        android:background="#80200500"
+        android:layout_marginTop="10dp"
+        android:padding="7dp"/>
+
+    <Button
+        android:id="@+id/signButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pass"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:text="Sign in"
+        android:background="@drawable/rounded_shape"
+        style="@style/AppTheme.RoundedCornerMaterialButton"/>
+
+</RelativeLayout>
