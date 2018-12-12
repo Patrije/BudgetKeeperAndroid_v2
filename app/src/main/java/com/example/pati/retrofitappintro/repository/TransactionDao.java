@@ -7,7 +7,7 @@ import com.example.pati.retrofitappintro.model.Transaction;
 import java.util.List;
 
 /**
- * Created by Pati on 11.12.2018.
+ * Created by Pati on 11.11.2018.
  */
 @Dao
 public interface TransactionDao {
@@ -21,7 +21,7 @@ public interface TransactionDao {
     @Query("select sum(value) from `Transaction`")
     Double getSumOfTransaction();
 
-    @Query("select transactionId,value,category,dateOfTransaction from `Transaction` order by dateOfTransaction asc")
+    @Query("select transactionId,value,category,dateOfTransaction from `Transaction` order by dateOfTransaction desc")
     List<Transaction> getAllTransactions();
 
 }

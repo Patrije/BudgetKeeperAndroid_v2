@@ -42,11 +42,6 @@ public class LoginActivity extends AppCompatActivity {
         loginEdit=(EditText)findViewById(R.id.login);
         passEdit=(EditText)findViewById(R.id.pass);
 
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl("http://192.168.1.103:8080/")
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-
         loginRestApi = retrofit.create(LoginRestApi.class);
         signButton.setOnClickListener(new View.OnClickListener() {
             @Override

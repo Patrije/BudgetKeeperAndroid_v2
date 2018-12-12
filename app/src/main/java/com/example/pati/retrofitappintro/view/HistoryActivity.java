@@ -2,6 +2,7 @@ package com.example.pati.retrofitappintro.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
@@ -25,6 +26,10 @@ public class HistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_history);
 
 recyclerView=(RecyclerView)findViewById(R.id.recyclerView);
+
+        RecyclerView.ItemDecoration itemDecoration = new
+                DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(itemDecoration);
 
         try {
             transactionViewModel=new TransactionViewModel(getApplication());
