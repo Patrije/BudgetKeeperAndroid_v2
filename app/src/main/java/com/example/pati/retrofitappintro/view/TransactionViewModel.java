@@ -2,10 +2,8 @@ package com.example.pati.retrofitappintro.view;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
-
 import com.example.pati.retrofitappintro.model.Transaction;
 import com.example.pati.retrofitappintro.repository.TransactionRepository;
-
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 

@@ -26,7 +26,6 @@ public class HistoryActivity extends AppCompatActivity {
 
 recyclerView=(RecyclerView)findViewById(R.id.recyclerView);
 
-
         try {
             transactionViewModel=new TransactionViewModel(getApplication());
         } catch (ExecutionException e) {
@@ -35,14 +34,11 @@ recyclerView=(RecyclerView)findViewById(R.id.recyclerView);
             e.printStackTrace();
         }
 
-
       customAdapter= new CustomAdapter(getApplicationContext(),transactionViewModel.getAllTransactions());
 recyclerView.setAdapter(customAdapter);
-
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
-
         Button buttonDelete= (Button)findViewById(R.id.deleteButton);
         buttonDelete.setOnClickListener(v->{
             transactionViewModel.deleteTransactions();

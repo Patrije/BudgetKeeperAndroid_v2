@@ -1,12 +1,9 @@
 package com.example.pati.retrofitappintro.repository;
 
 import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
-
 import com.example.pati.retrofitappintro.model.Transaction;
-
 import java.util.List;
 
 /**
@@ -19,7 +16,8 @@ public interface TransactionDao {
     void insert(Transaction transaction);
 
     @Query("delete  from `Transaction` ")
-    public void deleteAll();
+    void deleteAll();
+
     @Query("select sum(value) from `Transaction`")
     Double getSumOfTransaction();
 

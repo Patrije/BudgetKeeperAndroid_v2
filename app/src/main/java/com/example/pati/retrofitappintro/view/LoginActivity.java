@@ -9,9 +9,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.pati.retrofitappintro.R;
+import com.example.pati.retrofitappintro.dagger.App;
 import com.example.pati.retrofitappintro.model.LoginCredentials;
 import com.example.pati.retrofitappintro.service.LoginRestApi;
 
+
+import javax.inject.Inject;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -22,6 +25,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
 
+    @Inject
+    Retrofit retrofit;
+
   private LoginRestApi loginRestApi;
   private Button signButton;
   private EditText loginEdit, passEdit;
@@ -30,23 +36,22 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_layout);
+        ((App) getApplication()).getNetComponent().inject(this);
 
         signButton=(Button)findViewById(R.id.signButton);
         loginEdit=(EditText)findViewById(R.id.login);
         passEdit=(EditText)findViewById(R.id.pass);
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.103:8080/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl("http://192.168.1.103:8080/")
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
 
         loginRestApi = retrofit.create(LoginRestApi.class);
         signButton.setOnClickListener(new View.OnClickListener() {
             @Override
            public void onClick(View v) {
                 checkCredentials();
-                //  getAllEmployees();
-               // Toast.makeText(getApplicationContext(),"jejej",Toast.LENGTH_SHORT).show();
             }
       });
     }
@@ -54,8 +59,7 @@ public class LoginActivity extends AppCompatActivity {
     private void checkCredentials() {
 
         LoginCredentials loginCredentials = new LoginCredentials(loginEdit.getText().toString(), passEdit.getText().toString());
-     //   Employee employee = new Employee("markus", "Gora", loginEdit.getText().toString(), "stolarz", "mojpassword", "ewgwe//@gmail.com", Double.parseDouble(balanceEdit.getText().toString()));
-        Call<ResponseBody> call = loginRestApi.checkLoginCredentails(loginCredentials);
+        Call<ResponseBody> call = loginRestApi.checkLoginCredentials(loginCredentials);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
