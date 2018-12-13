@@ -1,5 +1,6 @@
 package com.example.pati.retrofitappintro.repository;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
@@ -22,6 +23,6 @@ public interface TransactionDao {
     Double getSumOfTransaction();
 
     @Query("select transactionId,value,category,dateOfTransaction from `Transaction` order by dateOfTransaction desc")
-    List<Transaction> getAllTransactions();
+    LiveData<List<Transaction>> getAllTransactions();
 
 }

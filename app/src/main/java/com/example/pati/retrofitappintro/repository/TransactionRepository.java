@@ -1,6 +1,7 @@
 package com.example.pati.retrofitappintro.repository;
 
 import android.app.Application;
+import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 
 import com.example.pati.retrofitappintro.model.Transaction;
@@ -34,8 +35,8 @@ public class TransactionRepository {
         new deleteAsyncTask(transactionDao).execute();
     }
 
-    public List<Transaction> getAllTransactions() throws ExecutionException, InterruptedException {
-        return new getTransactions(transactionDao).execute().get();
+    public LiveData<List<Transaction>> getAllTransactions() throws ExecutionException, InterruptedException {
+        return transactionDao.getAllTransactions();
     }
 
     private static class insertAsyncTask extends AsyncTask<Transaction, Void, Void> {
@@ -83,18 +84,4 @@ public class TransactionRepository {
         }
     }
 
-    private static class getTransactions extends AsyncTask<Void, Void, List<Transaction>> {
-
-        private TransactionDao mAsyncTaskDao;
-
-        getTransactions(TransactionDao dao){
-            mAsyncTaskDao= dao;
-        }
-
-
-        @Override
-        protected List<Transaction> doInBackground(Void... voids) {
-            return mAsyncTaskDao.getAllTransactions();
-        }
-    }
 }

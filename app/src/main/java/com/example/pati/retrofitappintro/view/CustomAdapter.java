@@ -32,6 +32,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         transactionList = transactions;
         notifyDataSetChanged();
     }
+    public void setData(List<Transaction> newData) {
+        this.transactionList = newData;
+        notifyDataSetChanged();
+    }
 
     @Override
     public CustomAdapter.ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {

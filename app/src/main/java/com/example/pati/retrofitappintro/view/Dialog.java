@@ -49,8 +49,8 @@ public class Dialog {
         dialog.show();
     }
     private void onSubmitted(final DialogInterface dialog, final Double value, final String category) {
-
-        transactionViewModel.insert(new Transaction(value,TimeHelper.getNow().getTimeInMillis(),23L,category));
+        if(category.equals("Category")){transactionViewModel.insert(new Transaction(value,TimeHelper.getNow().getTimeInMillis(),23L,"N/A"));}
+       else transactionViewModel.insert(new Transaction(value,TimeHelper.getNow().getTimeInMillis(),23L,category));
         dialog.dismiss();
     }
 

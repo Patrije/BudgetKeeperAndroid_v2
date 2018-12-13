@@ -1,5 +1,8 @@
 package com.example.pati.retrofitappintro.view;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -31,24 +34,30 @@ recyclerView=(RecyclerView)findViewById(R.id.recyclerView);
                 DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(itemDecoration);
 
-        try {
-            transactionViewModel=new TransactionViewModel(getApplication());
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
-      customAdapter= new CustomAdapter(getApplicationContext(),transactionViewModel.getAllTransactions());
-recyclerView.setAdapter(customAdapter);
+            transactionViewModel = ViewModelProviders.of(this).get(TransactionViewModel.class);
+            customAdapter= new CustomAdapter(getApplicationContext(),new ArrayList<Transaction>());
+
+        recyclerView.setAdapter(customAdapter);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
         Button buttonDelete= (Button)findViewById(R.id.deleteButton);
         buttonDelete.setOnClickListener(v->{
             transactionViewModel.deleteTransactions();
-            customAdapter.updateEvents(transactionViewModel.getAllTransactions());
             customAdapter.clear();
         });
+        try {
+            transactionViewModel.getAllTransactions().observe(this, new Observer<List<Transaction>>() {
+                @Override
+                public void onChanged(@Nullable List<Transaction> transactions) {
+                    customAdapter.setData(transactions);
+                }
+            });
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
