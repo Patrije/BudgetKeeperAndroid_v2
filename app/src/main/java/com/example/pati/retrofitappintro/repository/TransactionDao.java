@@ -25,4 +25,6 @@ public interface TransactionDao {
     @Query("select transactionId,value,category,dateOfTransaction from `Transaction` order by dateOfTransaction desc")
     LiveData<List<Transaction>> getAllTransactions();
 
+
+
 }

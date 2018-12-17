@@ -2,7 +2,6 @@ package com.example.pati.retrofitappintro.view;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -22,14 +21,14 @@ public class Dialog {
 
     private final Context context;
     private final TransactionViewModel transactionViewModel;
-    private final String OperationType;
+    private final String operationType;
     private Spinner spinner;
     private String category;
 
     public Dialog(Context context, TransactionViewModel transactionViewModel, String operationType){
         this.context=context;
         this.transactionViewModel=transactionViewModel;
-        this.OperationType=operationType;
+        this.operationType =operationType;
     }
 
     public void showDialog() {
@@ -48,7 +47,8 @@ public class Dialog {
         cancelButton.setOnClickListener(view -> onDismissed(dialog));
         dialog.show();
     }
-    private void onSubmitted(final DialogInterface dialog, final Double value, final String category) {
+    private void onSubmitted(final DialogInterface dialog,  Double value, final String category) {
+        if(operationType.equals("expanses")){value=-value;}
         if(category.equals("Category")){transactionViewModel.insert(new Transaction(value,TimeHelper.getNow().getTimeInMillis(),23L,"N/A"));}
        else transactionViewModel.insert(new Transaction(value,TimeHelper.getNow().getTimeInMillis(),23L,category));
         dialog.dismiss();

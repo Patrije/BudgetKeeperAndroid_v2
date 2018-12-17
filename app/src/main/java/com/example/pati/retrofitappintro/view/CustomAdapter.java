@@ -54,13 +54,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        Transaction event = transactionList.get(position);
+        Transaction transaction = transactionList.get(position);
 
         Calendar calendar = TimeHelper.getNow();
-        calendar.setTimeInMillis(event.getDateOfTransaction());
+        calendar.setTimeInMillis(transaction.getDateOfTransaction());
         String dateOfTransaction= calendar.get(Calendar.DAY_OF_MONTH)+"-"+String.format("%2d", calendar.get(Calendar.MONTH)+1)+"-"+calendar.get(Calendar.YEAR);
-holder.textViewValue.setText(String.valueOf(event.getValue()));
-holder.textViewCategory.setText(event.getCategory());
+holder.textViewValue.setText(String.valueOf(transaction.getValue()));
+holder.textViewCategory.setText(transaction.getCategory());
 holder.textViewDate.setText(dateOfTransaction);
     }
 

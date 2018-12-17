@@ -44,13 +44,21 @@
                 android:background="@drawable/rounded_shape"
                 android:textAlignment="center"
                 />
+           <com.github.mikephil.charting.charts.LineChart
+               android:id="@+id/bar_chart"
+               android:layout_width="match_parent"
+               android:layout_height="200dp"
+               android:layout_below="@+id/budget"
+               android:layout_marginTop="15dp">
+
+           </com.github.mikephil.charting.charts.LineChart>
 
 <RelativeLayout
     android:id="@+id/buttons_group"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_below="@+id/budget"
-    android:layout_marginTop="120dp">
+    android:layout_below="@+id/bar_chart"
+    android:layout_marginTop="30dp">
             <Button
                 android:id="@+id/ask_button"
                 android:layout_width="300dp"

@@ -18,7 +18,7 @@ public abstract class TransactionDatabase extends RoomDatabase {
 
     private static volatile TransactionDatabase INSTANCE;
 
-    static TransactionDatabase getDatabase(final Context context) {
+    public static TransactionDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (TransactionDatabase.class) {
                 if (INSTANCE == null) {

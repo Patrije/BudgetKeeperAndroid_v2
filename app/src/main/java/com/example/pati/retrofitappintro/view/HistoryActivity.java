@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-public class HistoryActivity extends AppCompatActivity {
+public class   HistoryActivity extends AppCompatActivity {
 
     private TransactionViewModel transactionViewModel;
     private RecyclerView recyclerView;
@@ -28,15 +28,13 @@ public class HistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-recyclerView=(RecyclerView)findViewById(R.id.recyclerView);
+        recyclerView=(RecyclerView)findViewById(R.id.recyclerView);
 
         RecyclerView.ItemDecoration itemDecoration = new
                 DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(itemDecoration);
-
-
-            transactionViewModel = ViewModelProviders.of(this).get(TransactionViewModel.class);
-            customAdapter= new CustomAdapter(getApplicationContext(),new ArrayList<Transaction>());
+        transactionViewModel = ViewModelProviders.of(this).get(TransactionViewModel.class);
+        customAdapter= new CustomAdapter(getApplicationContext(),new ArrayList<Transaction>());
 
         recyclerView.setAdapter(customAdapter);
         LinearLayoutManager llm = new LinearLayoutManager(this);
