@@ -1,1 +1,1 @@
-![](ezgif.com-video-to-gif.gif)
+![](ezgif.com-resize.gif)
