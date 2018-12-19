@@ -28,9 +28,9 @@ public class LoginActivity extends AppCompatActivity {
     @Inject
     Retrofit retrofit;
 
-  private LoginRestApi loginRestApi;
-  private Button signButton;
-  private EditText loginEdit, passEdit;
+    private LoginRestApi loginRestApi;
+    private Button signButton;
+    private EditText loginEdit, passEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,17 +38,17 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.login_layout);
         ((App) getApplication()).getNetComponent().inject(this);
 
-        signButton=(Button)findViewById(R.id.signButton);
-        loginEdit=(EditText)findViewById(R.id.login);
-        passEdit=(EditText)findViewById(R.id.pass);
+        signButton = (Button) findViewById(R.id.signButton);
+        loginEdit = (EditText) findViewById(R.id.login);
+        passEdit = (EditText) findViewById(R.id.pass);
 
         loginRestApi = retrofit.create(LoginRestApi.class);
         signButton.setOnClickListener(new View.OnClickListener() {
             @Override
-           public void onClick(View v) {
+            public void onClick(View v) {
                 checkCredentials();
             }
-      });
+        });
     }
 
     private void checkCredentials() {
@@ -58,13 +58,12 @@ public class LoginActivity extends AppCompatActivity {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                Toast.makeText(getApplicationContext(),response.toString(),Toast.LENGTH_SHORT).show();
-                if(response.code()==200){
+                Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
+                if (response.code() == 200) {
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
-                }
-                else{
-                    Toast.makeText(getApplicationContext(),"Failure",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Failure", Toast.LENGTH_SHORT).show();
                 }
             }
 

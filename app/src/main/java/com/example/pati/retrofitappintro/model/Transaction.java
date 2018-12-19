@@ -7,7 +7,7 @@ import android.arch.persistence.room.PrimaryKey;
 import java.util.Date;
 
 /**
- * Created by Pati on 11.12.2018.
+ * Created by Pati on 11.11.2018.
  */
 
 @Entity

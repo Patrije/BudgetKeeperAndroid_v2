@@ -3,7 +3,7 @@ package com.example.pati.retrofitappintro.dagger;
 import android.app.Application;
 
 /**
- * Created by Pati on 12.11.2018.
+ * Created by Pati on 10.11.2018.
  */
 
 public class App extends Application {

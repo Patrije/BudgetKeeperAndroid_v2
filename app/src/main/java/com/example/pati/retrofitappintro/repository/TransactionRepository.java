@@ -27,11 +27,15 @@ public class TransactionRepository {
         return new getSum(transactionDao).execute().get();
     }
 
+    public List<Transaction> getAllTransactionASC() throws ExecutionException, InterruptedException {
+        return new getAllTransactionAsc(transactionDao).execute().get();
+    }
+
     public void insertTransaction(Transaction transaction) {
         new insertAsyncTask(transactionDao).execute(transaction);
     }
 
-    public void deleteTransactions(){
+    public void deleteTransactions() {
         new deleteAsyncTask(transactionDao).execute();
     }
 
@@ -73,14 +77,29 @@ public class TransactionRepository {
 
         private TransactionDao mAsyncTaskDao;
 
-        getSum(TransactionDao dao){
-            mAsyncTaskDao= dao;
+        getSum(TransactionDao dao) {
+            mAsyncTaskDao = dao;
         }
 
 
         @Override
         protected Double doInBackground(Void... voids) {
             return mAsyncTaskDao.getSumOfTransaction();
+        }
+    }
+
+    private static class getAllTransactionAsc extends AsyncTask<Void, Void, List<Transaction>> {
+
+        private TransactionDao mAsyncTaskDao;
+
+        getAllTransactionAsc(TransactionDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+
+        @Override
+        protected List<Transaction> doInBackground(Void... voids) {
+            return mAsyncTaskDao.getAllTransactionASC();
         }
     }
 

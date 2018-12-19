@@ -4,7 +4,9 @@ import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+
 import com.example.pati.retrofitappintro.model.Transaction;
+
 import java.util.List;
 
 /**
@@ -25,6 +27,6 @@ public interface TransactionDao {
     @Query("select transactionId,value,category,dateOfTransaction from `Transaction` order by dateOfTransaction desc")
     LiveData<List<Transaction>> getAllTransactions();
 
-
-
+    @Query("select transactionId, value, category, dateOfTransaction from `Transaction` order by dateOfTransaction asc")
+    List<Transaction> getAllTransactionASC();
 }

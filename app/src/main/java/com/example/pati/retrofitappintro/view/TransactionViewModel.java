@@ -4,13 +4,15 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+
 import com.example.pati.retrofitappintro.model.Transaction;
 import com.example.pati.retrofitappintro.repository.TransactionRepository;
+
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**
- * Created by Pati on 12.12.2018.
+ * Created by Pati on 12.11.2018.
  */
 
 public class TransactionViewModel extends AndroidViewModel {
@@ -25,7 +27,7 @@ public class TransactionViewModel extends AndroidViewModel {
 
         transactionRepository = new TransactionRepository(application);
         transactionSum = transactionRepository.getTransactionSum();
-        transactionList=transactionRepository.getAllTransactions();
+        transactionList = transactionRepository.getAllTransactions();
     }
 
     public void setUpViewModel() throws ExecutionException, InterruptedException {
@@ -40,15 +42,16 @@ public class TransactionViewModel extends AndroidViewModel {
         transactionRepository.insertTransaction(transaction);
     }
 
-    public LiveData<List<Transaction>>getAllTransactions() throws ExecutionException, InterruptedException {
-        if(transactionList==null){
-            transactionList=transactionRepository.getAllTransactions();
+
+    public LiveData<List<Transaction>> getAllTransactions() throws ExecutionException, InterruptedException {
+        if (transactionList == null) {
+            transactionList = transactionRepository.getAllTransactions();
         }
         return transactionList;
     }
 
 
-    public void deleteTransactions(){
+    public void deleteTransactions() {
         transactionRepository.deleteTransactions();
     }
 

@@ -20,7 +20,7 @@ import java.util.Calendar;
 import java.util.List;
 
 /**
- * Created by Pati on 14.12.2018.
+ * Created by Pati on 10.12.2018.
  */
 
 public class MyLineChart extends LineChart {

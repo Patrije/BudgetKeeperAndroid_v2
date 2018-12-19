@@ -12,9 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import com.example.pati.retrofitappintro.R;
 import com.example.pati.retrofitappintro.model.Transaction;
 import com.example.pati.retrofitappintro.util.TimeHelper;
+
 import java.util.Calendar;
 import java.util.List;
 
@@ -25,13 +27,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     public CustomAdapter(final Context context, final List<Transaction> transactionList) {
         this.transactionList = transactionList;
-        this.context=context;
+        this.context = context;
     }
 
     public void updateEvents(final List<Transaction> transactions) {
         transactionList = transactions;
         notifyDataSetChanged();
     }
+
     public void setData(List<Transaction> newData) {
         this.transactionList = newData;
         notifyDataSetChanged();
@@ -40,7 +43,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     @Override
     public CustomAdapter.ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
         context = parent.getContext();
-        LayoutInflater layoutInflater=LayoutInflater.from(context);
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
         View transView = layoutInflater.inflate(R.layout.row, parent, false);
         ViewHolder viewHolder = new ViewHolder(transView);
         return viewHolder;
@@ -58,10 +61,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         Calendar calendar = TimeHelper.getNow();
         calendar.setTimeInMillis(transaction.getDateOfTransaction());
-        String dateOfTransaction= calendar.get(Calendar.DAY_OF_MONTH)+"-"+String.format("%2d", calendar.get(Calendar.MONTH)+1)+"-"+calendar.get(Calendar.YEAR);
-holder.textViewValue.setText(String.valueOf(transaction.getValue()));
-holder.textViewCategory.setText(transaction.getCategory());
-holder.textViewDate.setText(dateOfTransaction);
+        String dateOfTransaction = calendar.get(Calendar.DAY_OF_MONTH) + "-" + String.format("%2d", calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.YEAR);
+        holder.textViewValue.setText(String.valueOf(transaction.getValue()));
+        holder.textViewCategory.setText(transaction.getCategory());
+        holder.textViewDate.setText(dateOfTransaction);
     }
 
     @Override
@@ -79,11 +82,12 @@ holder.textViewDate.setText(dateOfTransaction);
         public TextView textViewValue;
         public TextView textViewDate;
         public TextView textViewCategory;
+
         public ViewHolder(final View view) {
             super(view);
 
-            textViewValue =(TextView) view.findViewById(R.id.valueField);
-            textViewCategory=(TextView) view.findViewById(R.id.categoryField);
+            textViewValue = (TextView) view.findViewById(R.id.valueField);
+            textViewCategory = (TextView) view.findViewById(R.id.categoryField);
             textViewDate = (TextView) view.findViewById(R.id.dateField);
         }
     }

@@ -18,30 +18,31 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-public class   HistoryActivity extends AppCompatActivity {
+public class HistoryActivity extends AppCompatActivity {
 
     private TransactionViewModel transactionViewModel;
     private RecyclerView recyclerView;
-    private  CustomAdapter customAdapter;
+    private CustomAdapter customAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-        recyclerView=(RecyclerView)findViewById(R.id.recyclerView);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
         RecyclerView.ItemDecoration itemDecoration = new
                 DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(itemDecoration);
         transactionViewModel = ViewModelProviders.of(this).get(TransactionViewModel.class);
-        customAdapter= new CustomAdapter(getApplicationContext(),new ArrayList<Transaction>());
+        customAdapter = new CustomAdapter(getApplicationContext(), new ArrayList<Transaction>());
 
         recyclerView.setAdapter(customAdapter);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
-        Button buttonDelete= (Button)findViewById(R.id.deleteButton);
-        buttonDelete.setOnClickListener(v->{
+        Button buttonDelete = (Button) findViewById(R.id.deleteButton);
+        buttonDelete.setOnClickListener(v -> {
             transactionViewModel.deleteTransactions();
             customAdapter.clear();
         });

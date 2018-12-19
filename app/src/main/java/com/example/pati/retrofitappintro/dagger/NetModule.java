@@ -16,7 +16,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by Pati on 12.11.2018.
+ * Created by Pati on 10.11.2018.
  */
 @Module
 public class NetModule {

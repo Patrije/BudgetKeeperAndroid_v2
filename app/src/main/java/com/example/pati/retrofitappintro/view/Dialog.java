@@ -14,7 +14,7 @@ import com.example.pati.retrofitappintro.model.Transaction;
 import com.example.pati.retrofitappintro.util.TimeHelper;
 
 /**
- * Created by Pati on 12.12.2018.
+ * Created by Pati on 12.11.2018.
  */
 
 public class Dialog {
@@ -25,10 +25,10 @@ public class Dialog {
     private Spinner spinner;
     private String category;
 
-    public Dialog(Context context, TransactionViewModel transactionViewModel, String operationType){
-        this.context=context;
-        this.transactionViewModel=transactionViewModel;
-        this.operationType =operationType;
+    public Dialog(Context context, TransactionViewModel transactionViewModel, String operationType) {
+        this.context = context;
+        this.transactionViewModel = transactionViewModel;
+        this.operationType = operationType;
     }
 
     public void showDialog() {
@@ -41,16 +41,21 @@ public class Dialog {
         //final EditText userCategory= dialog.findViewById(R.id.category);
         Button okButton = (Button) dialog.findViewById(R.id.confirmButton);
         Button cancelButton = (Button) dialog.findViewById(R.id.cancelButton);
-        spinner= (Spinner) dialog.findViewById(R.id.category);
+        spinner = (Spinner) dialog.findViewById(R.id.category);
         spinner.setOnItemSelectedListener(countrySelectedListener);
-        okButton.setOnClickListener(v -> onSubmitted(dialog, Double.parseDouble(userInput.getText().toString()),category ));
+        okButton.setOnClickListener(v -> onSubmitted(dialog, Double.parseDouble(userInput.getText().toString()), category));
         cancelButton.setOnClickListener(view -> onDismissed(dialog));
         dialog.show();
     }
-    private void onSubmitted(final DialogInterface dialog,  Double value, final String category) {
-        if(operationType.equals("expanses")){value=-value;}
-        if(category.equals("Category")){transactionViewModel.insert(new Transaction(value,TimeHelper.getNow().getTimeInMillis(),23L,"N/A"));}
-       else transactionViewModel.insert(new Transaction(value,TimeHelper.getNow().getTimeInMillis(),23L,category));
+
+    private void onSubmitted(final DialogInterface dialog, Double value, final String category) {
+        if (operationType.equals("expanses")) {
+            value = -value;
+        }
+        if (category.equals("Category")) {
+            transactionViewModel.insert(new Transaction(value, TimeHelper.getNow().getTimeInMillis(), 23L, "N/A"));
+        } else
+            transactionViewModel.insert(new Transaction(value, TimeHelper.getNow().getTimeInMillis(), 23L, category));
         dialog.dismiss();
     }
 
@@ -63,7 +68,7 @@ public class Dialog {
         @Override
         public void onItemSelected(AdapterView<?> spinner, View container,
                                    int position, long id) {
-           category= spinner.getSelectedItem().toString();
+            category = spinner.getSelectedItem().toString();
         }
 
         @Override
