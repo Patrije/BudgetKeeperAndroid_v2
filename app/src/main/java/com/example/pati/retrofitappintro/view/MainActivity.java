@@ -35,7 +35,6 @@ import java.util.concurrent.ExecutionException;
 public class MainActivity extends AppCompatActivity {
 
     private TextView budget;
-    private EditText loginEdit, balanceEdit;
     private Button askButton, expenseButton, incomeButton, historyButton;
     private TransactionViewModel transactionViewModel;
     private TransactionRepository transactionRepository;
@@ -106,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         budget.setText(transactionRepository.getTransactionSum().toString());
                         String string = "";
+                        entries.removeAll(entries);
                         for (int i = 0; i < transactions.size(); i++) {
 //    string=string+transactions.get(i).getValue()+"";
                             entries.add(new Entry((float) i, (float) transactionRepository.getAllTransactionASC().get(i).getValue()));
@@ -118,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
                         LineData data = new LineData(dataSets);
                         lineChart.setData(data);
                         lineChart.notifyDataSetChanged();
+                        lineChart.invalidate();
 //title.setText(string);
 //                        set.notifyDataSetChanged();
 //                        lineChart.notifyDataSetChanged();
