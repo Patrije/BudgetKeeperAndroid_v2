@@ -10,13 +10,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-
 import com.example.pati.retrofitappintro.R;
 import com.example.pati.retrofitappintro.model.Transaction;
-import com.example.pati.retrofitappintro.repository.TransactionDao;
-import com.example.pati.retrofitappintro.repository.TransactionDatabase;
 import com.example.pati.retrofitappintro.repository.TransactionRepository;
 import com.example.pati.retrofitappintro.util.TimeHelper;
 import com.github.mikephil.charting.charts.LineChart;
@@ -25,8 +21,6 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.github.mikephil.charting.utils.EntryXComparator;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -88,42 +82,36 @@ public class MainActivity extends AppCompatActivity {
         lineChart.setAlpha(0.8f);
         entries = new ArrayList<>();
         negEntries= new ArrayList<>();
-        TextView title = (TextView) findViewById(R.id.title);
         Calendar calendar = TimeHelper.getNow();
-//        LineDataSet set = new LineDataSet(entries,"datas");
-//        set.setColor(Color.BLACK);
-//        ArrayList<ILineDataSet>dataSets= new ArrayList<>();
-//        dataSets.add(set);
-//        LineData data= new LineData(dataSets);
-//        lineChart.setData(data);
-//        Collections.sort(entries, new EntryXComparator());
         try {
             transactionViewModel.getAllTransactions().observe(this, new Observer<List<Transaction>>() {
                 @Override
                 public void onChanged(@Nullable List<Transaction> transactions) {
-                    ArrayList<Entry> entries2 = new ArrayList<>();
-
                     try {
                         budget.setText(transactionRepository.getTransactionSum().toString());
                         String string = "";
                         entries.removeAll(entries);
                         negEntries.removeAll(negEntries);
                         for (int i = 0; i < transactions.size(); i++) {
-//    string=string+transactions.get(i).getValue()+"";
                             if(transactionRepository.getAllTransactionASC().get(i).getValue()>=0) {
                                 entries.add(new Entry((float) i, (float) transactionRepository.getAllTransactionASC().get(i).getValue()));
                             } else {
                                 negEntries.add(new Entry((float) i, Math.abs((float) transactionRepository.getAllTransactionASC().get(i).getValue())));
                             }
                         }
-//updateEntries(entries2);
+
                         LineDataSet set = new LineDataSet(entries, "Incomes");
                         LineDataSet negSet = new LineDataSet(negEntries, "Expenses");
                         negSet.setColor(Color.RED);
                         negSet.setLineWidth(3.0f);
+                        negSet.setDrawFilled(true);
+                        negSet.setFillColor(Color.RED);
+                        negSet.setFillAlpha(210);
                         set.setColor(Color.GREEN);
                         set.setLineWidth(3.0f);
-//                        set.setColor(Color.BLACK);
+                        set.setDrawFilled(true);
+                        set.setFillColor(Color.GREEN);
+                        set.setFillAlpha(190);
                         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
                         dataSets.add(set);
                         dataSets.add(negSet);
@@ -131,12 +119,8 @@ public class MainActivity extends AppCompatActivity {
                         lineChart.setData(data);
                         lineChart.notifyDataSetChanged();
                         lineChart.invalidate();
-//                        title.setText(string);
-//                        set.notifyDataSetChanged();
-//                        lineChart.notifyDataSetChanged();
-//                        Collections.sort(entries, new EntryXComparator());
                     } catch (NegativeArraySizeException e) {
-                        Log.i("Statuss", e.getMessage());
+                        Log.i("Status", e.getMessage());
                     } catch (ExecutionException e) {
                         e.printStackTrace();
                     } catch (InterruptedException e) {
