@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private TransactionRepository transactionRepository;
     private Dialog dialog1, dialog2, dialog3;
     private LineChart lineChart;
-    private ArrayList<Entry> entries;
+    private ArrayList<Entry> entries, negEntries;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
         lineChart.setBackgroundColor(ColorTemplate.getHoloBlue());
         lineChart.setAlpha(0.8f);
         entries = new ArrayList<>();
+        negEntries= new ArrayList<>();
         TextView title = (TextView) findViewById(R.id.title);
         Calendar calendar = TimeHelper.getNow();
 //        LineDataSet set = new LineDataSet(entries,"datas");
@@ -95,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
 //        dataSets.add(set);
 //        LineData data= new LineData(dataSets);
 //        lineChart.setData(data);
-//     Collections.sort(entries, new EntryXComparator());
+//        Collections.sort(entries, new EntryXComparator());
         try {
             transactionViewModel.getAllTransactions().observe(this, new Observer<List<Transaction>>() {
                 @Override
@@ -106,20 +107,31 @@ public class MainActivity extends AppCompatActivity {
                         budget.setText(transactionRepository.getTransactionSum().toString());
                         String string = "";
                         entries.removeAll(entries);
+                        negEntries.removeAll(negEntries);
                         for (int i = 0; i < transactions.size(); i++) {
 //    string=string+transactions.get(i).getValue()+"";
-                            entries.add(new Entry((float) i, (float) transactionRepository.getAllTransactionASC().get(i).getValue()));
+                            if(transactionRepository.getAllTransactionASC().get(i).getValue()>=0) {
+                                entries.add(new Entry((float) i, (float) transactionRepository.getAllTransactionASC().get(i).getValue()));
+                            } else {
+                                negEntries.add(new Entry((float) i, Math.abs((float) transactionRepository.getAllTransactionASC().get(i).getValue())));
+                            }
                         }
 //updateEntries(entries2);
-                        LineDataSet set = new LineDataSet(entries, "datas");
+                        LineDataSet set = new LineDataSet(entries, "Incomes");
+                        LineDataSet negSet = new LineDataSet(negEntries, "Expenses");
+                        negSet.setColor(Color.RED);
+                        negSet.setLineWidth(3.0f);
+                        set.setColor(Color.GREEN);
+                        set.setLineWidth(3.0f);
 //                        set.setColor(Color.BLACK);
                         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
                         dataSets.add(set);
+                        dataSets.add(negSet);
                         LineData data = new LineData(dataSets);
                         lineChart.setData(data);
                         lineChart.notifyDataSetChanged();
                         lineChart.invalidate();
-//title.setText(string);
+//                        title.setText(string);
 //                        set.notifyDataSetChanged();
 //                        lineChart.notifyDataSetChanged();
 //                        Collections.sort(entries, new EntryXComparator());
