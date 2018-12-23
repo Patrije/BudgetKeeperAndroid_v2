@@ -63,7 +63,7 @@ public class Dialog {
             Toast.makeText(context.getApplicationContext(),"Insert value", Toast.LENGTH_SHORT).show();
             return ;
         }
-            if (operationType.equals("Expanses")) {
+            if (operationType.equals("expenses")) {
                 value = -value;
             }
             if (category.equals("Category")) {

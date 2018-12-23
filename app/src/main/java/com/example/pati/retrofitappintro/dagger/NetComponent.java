@@ -1,5 +1,6 @@
 package com.example.pati.retrofitappintro.dagger;
 
+import com.example.pati.retrofitappintro.service.TransactionService;
 import com.example.pati.retrofitappintro.view.LoginActivity;
 import com.example.pati.retrofitappintro.view.MainActivity;
 
@@ -17,4 +18,6 @@ public interface NetComponent {
     void inject(MainActivity activity);
 
     void inject(LoginActivity loginActivity);
+
+    void inject(TransactionService transactionService);
 }

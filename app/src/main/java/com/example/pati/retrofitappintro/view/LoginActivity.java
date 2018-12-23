@@ -3,6 +3,7 @@ package com.example.pati.retrofitappintro.view;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +13,7 @@ import com.example.pati.retrofitappintro.R;
 import com.example.pati.retrofitappintro.dagger.App;
 import com.example.pati.retrofitappintro.model.LoginCredentials;
 import com.example.pati.retrofitappintro.service.LoginRestApi;
+import com.example.pati.retrofitappintro.service.TransactionService;
 
 
 import javax.inject.Inject;
@@ -47,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 checkCredentials();
+               // Log.i("statussss", "sentttt");
             }
         });
     }
@@ -61,6 +64,8 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.code() == 200) {
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
+                    Intent intentService = new Intent(getApplicationContext(), TransactionService.class);
+                    startService(intentService);
                 } else {
                     Toast.makeText(getApplicationContext(), "Failure", Toast.LENGTH_SHORT).show();
                 }

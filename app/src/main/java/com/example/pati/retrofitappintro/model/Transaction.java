@@ -4,6 +4,8 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 /**
@@ -14,10 +16,15 @@ import java.util.Date;
 public class Transaction {
 
     @PrimaryKey(autoGenerate = true)
+    @SerializedName("transactionId")
     private int transactionId;
+    @SerializedName("value")
     private double value;
+    @SerializedName("dateOfTransaction")
     private Long dateOfTransaction;
+    @SerializedName("employeeId")
     private Long employeeId;
+    @SerializedName("category")
     private String category;
 
     @Ignore
