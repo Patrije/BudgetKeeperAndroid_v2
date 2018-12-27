@@ -2,6 +2,7 @@ package com.example.pati.retrofitappintro.view;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.pati.retrofitappintro.R;
 import com.example.pati.retrofitappintro.model.Transaction;
+import com.example.pati.retrofitappintro.service.TransactionService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +47,8 @@ public class HistoryActivity extends AppCompatActivity {
         buttonDelete.setOnClickListener(v -> {
             transactionViewModel.deleteTransactions();
             customAdapter.clear();
+            Intent intentService = new Intent(getApplicationContext(), TransactionService.class);
+            startService(intentService);
         });
         try {
             transactionViewModel.getAllTransactions().observe(this, new Observer<List<Transaction>>() {

@@ -2,6 +2,7 @@ package com.example.pati.retrofitappintro.view;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -12,6 +13,8 @@ import android.widget.Toast;
 
 import com.example.pati.retrofitappintro.R;
 import com.example.pati.retrofitappintro.model.Transaction;
+import com.example.pati.retrofitappintro.repository.TransactionRepository;
+import com.example.pati.retrofitappintro.service.TransactionService;
 import com.example.pati.retrofitappintro.util.TimeHelper;
 
 /**
@@ -23,9 +26,11 @@ public class Dialog {
     private final Context context;
     private final TransactionViewModel transactionViewModel;
     private final String operationType;
+    private TransactionRepository transactionRepository;
     private Spinner spinner;
     private String category;
     private EditText userInput;
+
 
     public Dialog(Context context, TransactionViewModel transactionViewModel, String operationType) {
         this.context = context;
@@ -63,11 +68,13 @@ public class Dialog {
             Toast.makeText(context.getApplicationContext(),"Insert value", Toast.LENGTH_SHORT).show();
             return ;
         }
+        Intent intentService = new Intent(context.getApplicationContext(), TransactionService.class);
+        context.startService(intentService);
             if (operationType.equals("expenses")) {
                 value = -value;
             }
             if (category.equals("Category")) {
-                transactionViewModel.insert(new Transaction(value, TimeHelper.getNow().getTimeInMillis(), 23L, "N/A"));
+                transactionViewModel.insert(new Transaction(value, TimeHelper.getNow().getTimeInMillis(), TimeHelper.getNow().getTimeInMillis(), "N/A"));
             } else
                 transactionViewModel.insert(new Transaction(value, TimeHelper.getNow().getTimeInMillis(), 23L, category));
         dialog.dismiss();

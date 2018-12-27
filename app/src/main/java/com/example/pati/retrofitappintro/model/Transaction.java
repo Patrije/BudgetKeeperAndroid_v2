@@ -6,8 +6,6 @@ import android.arch.persistence.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Date;
-
 /**
  * Created by Pati on 11.11.2018.
  */
@@ -17,7 +15,7 @@ public class Transaction {
 
     @PrimaryKey(autoGenerate = true)
     @SerializedName("transactionId")
-    private int transactionId;
+    private long transactionId;
     @SerializedName("value")
     private double value;
     @SerializedName("dateOfTransaction")
@@ -27,7 +25,7 @@ public class Transaction {
     @SerializedName("category")
     private String category;
 
-    @Ignore
+
     public Transaction(double value, Long dateOfTransaction, Long employeeId, String category) {
         this.value = value;
         this.dateOfTransaction = dateOfTransaction;
@@ -35,6 +33,7 @@ public class Transaction {
         this.category = category;
     }
 
+    @Ignore
     public Transaction(double value, Long dateOfTransaction, String category) {
         this.value = value;
         this.dateOfTransaction = dateOfTransaction;
@@ -45,11 +44,11 @@ public class Transaction {
     public Transaction() {
     }
 
-    public int getTransactionId() {
+    public long getTransactionId() {
         return transactionId;
     }
 
-    public void setTransactionId(int transactionId) {
+    public void setTransactionId(long transactionId) {
         this.transactionId = transactionId;
     }
 

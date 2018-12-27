@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by Pati on 12.11.2018.
  */
 
+
 public class LoginCredentials {
 
     @SerializedName("login")

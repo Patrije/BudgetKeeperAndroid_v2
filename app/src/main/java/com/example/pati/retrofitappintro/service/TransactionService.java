@@ -1,7 +1,9 @@
 package com.example.pati.retrofitappintro.service;
 
+import android.app.Activity;
 import android.app.Application;
 import android.app.Service;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
@@ -11,6 +13,8 @@ import android.util.Log;
 import android.widget.Toast;
 import com.example.pati.retrofitappintro.dagger.App;
 import com.example.pati.retrofitappintro.repository.TransactionRepository;
+import com.example.pati.retrofitappintro.view.TransactionViewModel;
+
 import java.util.concurrent.ExecutionException;
 import javax.inject.Inject;
 import okhttp3.ResponseBody;
@@ -72,7 +76,7 @@ public class TransactionService extends Service {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.code() == 200) {
-                    Toast.makeText(context,"Transaction sent",Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(context,"Transaction sent",Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(context, "Failure", Toast.LENGTH_SHORT).show();
                 }

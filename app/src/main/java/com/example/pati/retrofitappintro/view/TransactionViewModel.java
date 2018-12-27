@@ -4,6 +4,8 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.example.pati.retrofitappintro.model.Transaction;
 import com.example.pati.retrofitappintro.repository.TransactionRepository;
@@ -17,10 +19,12 @@ import java.util.concurrent.ExecutionException;
 
 public class TransactionViewModel extends AndroidViewModel {
 
+    private static final String LOGIN_KEY="BudgetKeeperKey";
     private TransactionRepository transactionRepository;
 
     private Double transactionSum;
     private LiveData<List<Transaction>> transactionList;
+    private SharedPreferences sharedPreferences;
 
     public TransactionViewModel(Application application) throws ExecutionException, InterruptedException {
         super(application);
@@ -28,10 +32,22 @@ public class TransactionViewModel extends AndroidViewModel {
         transactionRepository = new TransactionRepository(application);
         transactionSum = transactionRepository.getTransactionSum();
         transactionList = transactionRepository.getAllTransactions();
+        sharedPreferences = application.getSharedPreferences("login_pref",Context.MODE_PRIVATE);
     }
 
     public void setUpViewModel() throws ExecutionException, InterruptedException {
 
+    }
+
+    public void saveToSharedPref(String login){
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(LOGIN_KEY,login);
+        editor.commit();
+    }
+
+    public String getFromSharedPref(){
+return sharedPreferences.getString(LOGIN_KEY,"");
     }
 
     public Double getTransactionSum() {
