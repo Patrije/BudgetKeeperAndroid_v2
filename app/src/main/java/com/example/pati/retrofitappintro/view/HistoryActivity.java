@@ -30,15 +30,12 @@ public class HistoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
-
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-
         RecyclerView.ItemDecoration itemDecoration = new
                 DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(itemDecoration);
         transactionViewModel = ViewModelProviders.of(this).get(TransactionViewModel.class);
         customAdapter = new CustomAdapter(getApplicationContext(), new ArrayList<Transaction>());
-
         recyclerView.setAdapter(customAdapter);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);

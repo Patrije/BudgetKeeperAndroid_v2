@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.example.pati.retrofitappintro.R;
 import com.example.pati.retrofitappintro.model.Transaction;
 import com.example.pati.retrofitappintro.repository.TransactionRepository;

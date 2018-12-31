@@ -46,13 +46,11 @@ public class MainActivity extends AppCompatActivity {
         expenseButton = (Button) findViewById(R.id.expense_button);
         incomeButton = (Button) findViewById(R.id.income_button);
         lineChart = (LineChart) findViewById(R.id.bar_chart);
-
         transactionViewModel = ViewModelProviders.of(this).get(TransactionViewModel.class);
         transactionRepository = new TransactionRepository(getApplication());
         dialog1 = new Dialog(this, transactionViewModel, "income");
         dialog2 = new Dialog(this, transactionViewModel, "expenses");
         dialog3 = new Dialog(this, transactionViewModel, "request");
-
         askButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
