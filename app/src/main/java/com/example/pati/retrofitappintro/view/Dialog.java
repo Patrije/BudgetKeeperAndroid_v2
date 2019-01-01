@@ -63,6 +63,7 @@ public class Dialog {
         else return 0;
     }
     private void onSubmitted(final DialogInterface dialog, Double value, final String category) {
+        int isAsk= 0;
         if(value==0){
             Toast.makeText(context.getApplicationContext(),"Insert value", Toast.LENGTH_SHORT).show();
             return ;
@@ -72,10 +73,13 @@ public class Dialog {
             if (operationType.equals("expenses")) {
                 value = -value;
             }
+        if (operationType.equals("request")) {
+            isAsk=1;
+        }
             if (category.equals("Category")) {
-                transactionViewModel.insert(new Transaction(value, TimeHelper.getNow().getTimeInMillis(), TimeHelper.getNow().getTimeInMillis(), "N/A"));
+                transactionViewModel.insert(new Transaction(value, TimeHelper.getNow().getTimeInMillis(), TimeHelper.getNow().getTimeInMillis(), "N/A", isAsk));
             } else
-                transactionViewModel.insert(new Transaction(value, TimeHelper.getNow().getTimeInMillis(), 23L, category));
+                transactionViewModel.insert(new Transaction(value, TimeHelper.getNow().getTimeInMillis(), 23L, category, isAsk));
         dialog.dismiss();
     }
     private void onDismissed(final DialogInterface dialog) {

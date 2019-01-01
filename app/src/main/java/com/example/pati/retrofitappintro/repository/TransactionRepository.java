@@ -31,6 +31,10 @@ public class TransactionRepository {
         return new getAllTransactionAsc(transactionDao).execute().get();
     }
 
+    public LiveData<List<Transaction>> getAllTransactionsList() throws ExecutionException, InterruptedException {
+        return transactionDao.getAllTransactionsWithoutRequests();
+    }
+
     public void insertTransaction(Transaction transaction) {
         new insertAsyncTask(transactionDao).execute(transaction);
     }
@@ -102,6 +106,21 @@ public class TransactionRepository {
             return mAsyncTaskDao.getAllTransactionASC();
         }
     }
+
+//    private static class getAllTransactionsList extends AsyncTask<Void, Void, List<Transaction>> {
+//
+//        private TransactionDao mAsyncTaskDao;
+//
+//        getAllTransactionsList(TransactionDao dao) {
+//            mAsyncTaskDao = dao;
+//        }
+//
+//
+//        @Override
+//        protected List<Transaction> doInBackground(Void... voids) {
+//            return mAsyncTaskDao.getAllTransactionsWithoutRequests();
+//        }
+//    }
 
 
 }

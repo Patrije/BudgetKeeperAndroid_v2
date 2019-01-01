@@ -21,12 +21,15 @@ public interface TransactionDao {
     @Query("delete  from `Transaction` ")
     void deleteAll();
 
-    @Query("select sum(value) from `Transaction`")
+    @Query("select sum(value) from `Transaction` where isAsk=0")
     Double getSumOfTransaction();
 
-    @Query("select transactionId,value,category,dateOfTransaction, employeeId from `Transaction` order by dateOfTransaction desc")
+    @Query("select transactionId,value,category,dateOfTransaction, employeeId, isAsk from `Transaction` order by dateOfTransaction desc")
     LiveData<List<Transaction>> getAllTransactions();
 
-    @Query("select transactionId, value, category, dateOfTransaction, employeeId from `Transaction` order by dateOfTransaction asc")
+    @Query("select transactionId, value, category, dateOfTransaction, employeeId, isAsk from `Transaction` order by dateOfTransaction asc")
     List<Transaction> getAllTransactionASC();
+
+    @Query("select transactionId, value, category, dateOfTransaction, employeeId, isAsk from `Transaction` where isAsk=0 order by dateOfTransaction asc")
+    LiveData<List<Transaction>> getAllTransactionsWithoutRequests();
 }

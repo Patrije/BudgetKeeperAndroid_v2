@@ -24,13 +24,16 @@ public class Transaction {
     private Long employeeId;
     @SerializedName("category")
     private String category;
+    @SerializedName("isAsk")
+    private int isAsk;
 
 
-    public Transaction(double value, Long dateOfTransaction, Long employeeId, String category) {
+    public Transaction(double value, Long dateOfTransaction, Long employeeId, String category, int isAsk) {
         this.value = value;
         this.dateOfTransaction = dateOfTransaction;
         this.employeeId = employeeId;
         this.category = category;
+        this.isAsk=isAsk;
     }
 
     @Ignore
@@ -82,5 +85,13 @@ public class Transaction {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public int getIsAsk() {
+        return isAsk;
+    }
+
+    public void setIsAsk(int ask) {
+        isAsk = ask;
     }
 }

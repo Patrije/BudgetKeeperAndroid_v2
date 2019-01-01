@@ -17,6 +17,7 @@ import com.example.pati.retrofitappintro.model.Transaction;
 import com.example.pati.retrofitappintro.service.TransactionService;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -48,9 +49,10 @@ public class HistoryActivity extends AppCompatActivity {
             startService(intentService);
         });
         try {
-            transactionViewModel.getAllTransactions().observe(this, new Observer<List<Transaction>>() {
+            transactionViewModel.getAllTransactionsWithoutRequest().observe(this, new Observer<List<Transaction>>() {
                 @Override
                 public void onChanged(@Nullable List<Transaction> transactions) {
+                   Collections.reverse(transactions);
                     customAdapter.setData(transactions);
                 }
             });

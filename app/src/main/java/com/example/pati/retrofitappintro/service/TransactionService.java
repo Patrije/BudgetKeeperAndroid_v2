@@ -13,8 +13,6 @@ import android.util.Log;
 import android.widget.Toast;
 import com.example.pati.retrofitappintro.dagger.App;
 import com.example.pati.retrofitappintro.repository.TransactionRepository;
-import com.example.pati.retrofitappintro.view.TransactionViewModel;
-
 import java.util.concurrent.ExecutionException;
 import javax.inject.Inject;
 import okhttp3.ResponseBody;

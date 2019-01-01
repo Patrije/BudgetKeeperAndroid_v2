@@ -87,14 +87,68 @@ public class MainActivity extends AppCompatActivity {
                 public void onChanged(@Nullable List<Transaction> transactions) {
                     try {
                         budget.setText(transactionRepository.getTransactionSum().toString()+"  PLN");
+//                        String string = "";
+//                        entries.removeAll(entries);
+//                        negEntries.removeAll(negEntries);
+//                        for (int i = 0; i < transactions.size(); i++) {
+//                            if(transactionRepository.getAllTransactionASC().get(i).getValue()>=0) {
+//                                entries.add(new Entry((float) i, (float) transactionRepository.getAllTransactionASC().get(i).getValue()));
+//                            } else {
+//                                negEntries.add(new Entry((float) i, Math.abs((float) transactionRepository.getAllTransactionASC().get(i).getValue())));
+//                            }
+//                        }
+//
+//                        LineDataSet set = new LineDataSet(entries, "Incomes");
+//                        LineDataSet negSet = new LineDataSet(negEntries, "Expenses");
+//                        negSet.setColor(Color.RED);
+//                        negSet.setLineWidth(3.0f);
+//                        negSet.setDrawFilled(true);
+//                        negSet.setFillColor(Color.RED);
+//                        negSet.setFillAlpha(210);
+//                        set.setColor(Color.GREEN);
+//                        set.setLineWidth(3.0f);
+//                        set.setDrawFilled(true);
+//                        set.setFillColor(Color.GREEN);
+//                        set.setFillAlpha(190);
+//                        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+//                        dataSets.add(set);
+//                        dataSets.add(negSet);
+//                        LineData data = new LineData(dataSets);
+//                        lineChart.setData(data);
+//                        lineChart.notifyDataSetChanged();
+//                        lineChart.invalidate();
+                    }// catch (NegativeArraySizeException e) {
+                        //Log.i("Status", e.getMessage());
+                   // }
+                    catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (NullPointerException e) {
+                        budget.setText("00.00");
+                    }
+                }
+            });
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            transactionViewModel.getAllTransactionsWithoutRequest().observe(this, new Observer<List<Transaction>>() {
+                @Override
+                public void onChanged(@Nullable List<Transaction> transactions) {
+                    try {
+                       // budget.setText(transactionRepository.getTransactionSum().toString()+"  PLN");
                         String string = "";
                         entries.removeAll(entries);
                         negEntries.removeAll(negEntries);
                         for (int i = 0; i < transactions.size(); i++) {
-                            if(transactionRepository.getAllTransactionASC().get(i).getValue()>=0) {
-                                entries.add(new Entry((float) i, (float) transactionRepository.getAllTransactionASC().get(i).getValue()));
+                            if(transactions.get(i).getValue()>=0) {
+                                entries.add(new Entry((float) i, (float) transactions.get(i).getValue()));
                             } else {
-                                negEntries.add(new Entry((float) i, Math.abs((float) transactionRepository.getAllTransactionASC().get(i).getValue())));
+                                negEntries.add(new Entry((float) i, Math.abs((float) transactions.get(i).getValue())));
                             }
                         }
 
@@ -119,12 +173,8 @@ public class MainActivity extends AppCompatActivity {
                         lineChart.invalidate();
                     } catch (NegativeArraySizeException e) {
                         Log.i("Status", e.getMessage());
-                    } catch (ExecutionException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    } catch (NullPointerException e) {
-                        budget.setText("00.00");
+                    }  catch (NullPointerException e) {
+                       // budget.setText("00.00");
                     }
                 }
             });
