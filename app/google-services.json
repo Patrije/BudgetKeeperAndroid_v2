@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "528793154899",
+    "firebase_url": "https://budgetkeeper-f4bf7.firebaseio.com",
+    "project_id": "budgetkeeper-f4bf7",
+    "storage_bucket": "budgetkeeper-f4bf7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:528793154899:android:939600adbbe61a18",
+        "android_client_info": {
+          "package_name": "com.example.pati.BudgetKeeperAndroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "528793154899-rv244sugjoco76q478lr3ibf43qui01l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pati.BudgetKeeperAndroid",
+            "certificate_hash": "3a44098074b781bcca2384a0bf55f44fcba4c48f"
+          }
+        },
+        {
+          "client_id": "528793154899-6kbp65qigeutvgqpgugdv6o3asnuc0d8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCygNe-O5aizjybcX2ITbxTsuZjupjyJrI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "528793154899-6kbp65qigeutvgqpgugdv6o3asnuc0d8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.pati.retrofitappintro.view.HistoryActivity"
+    tools:context="com.example.pati.BudgetKeeperAndroid.view.HistoryActivity"
     android:background="@drawable/theme_cash">
 
    <RelativeLayout

@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.pati.retrofitappintro">
+    package="com.example.pati.BudgetKeeperAndroid">
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
-        android:name=".dagger.App"
+        android:name="com.example.pati.BudgetKeeperAndroid.dagger.App"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.MainActivity">
+        <activity android:name="com.example.pati.BudgetKeeperAndroid.view.MainActivity">
         </activity>
-        <activity android:name=".view.HistoryActivity" />
-        <activity android:name=".view.LoginActivity">
+        <activity android:name="com.example.pati.BudgetKeeperAndroid.view.HistoryActivity" />
+        <activity android:name="com.example.pati.BudgetKeeperAndroid.view.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".service.TransactionService"/>
+        <service android:name="com.example.pati.BudgetKeeperAndroid.service.TransactionService"/>
     </application>
 
 </manifest>

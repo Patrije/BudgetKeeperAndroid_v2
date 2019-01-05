@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/RetroFitAppIntro.iml" filepath="$PROJECT_DIR$/RetroFitAppIntro.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BudgetKeeperAndroid_v2.iml" filepath="$PROJECT_DIR$/BudgetKeeperAndroid_v2.iml" />
+      <module fileurl="file://E:\engineerCode\BudgetKeeperAndroid_v2\RetroFitAppIntro.iml" filepath="E:\engineerCode\BudgetKeeperAndroid_v2\RetroFitAppIntro.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://E:\engineerCode\BudgetKeeperAndroid_v2\app\app.iml" filepath="E:\engineerCode\BudgetKeeperAndroid_v2\app\app.iml" />
     </modules>
   </component>
 </project>

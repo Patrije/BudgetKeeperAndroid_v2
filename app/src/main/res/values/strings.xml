@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RetroFitAppIntro</string>
+    <string name="app_name">BudgetKeeper</string>
     <string-array name="categories">
         <item>Category</item>
         <item>Fuel</item>

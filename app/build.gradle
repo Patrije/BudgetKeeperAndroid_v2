@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.example.pati.retrofitappintro"
+        applicationId "com.example.pati.BudgetKeeperAndroid"
         minSdkVersion 26
         targetSdkVersion 27
         versionCode 1
@@ -55,6 +55,9 @@ dependencies {
     androidTestImplementation "android.arch.core:core-testing:1.1.1"
     androidTestImplementation "android.arch.persistence.room:testing:1.1.1"
 
+    implementation 'com.google.firebase:firebase-core:16.0.1'
+
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
 
 }
+apply plugin: 'com.google.gms.google-services'
