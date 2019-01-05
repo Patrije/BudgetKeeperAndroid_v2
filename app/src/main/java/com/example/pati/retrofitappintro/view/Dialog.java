@@ -77,9 +77,9 @@ public class Dialog {
             isAsk=1;
         }
             if (category.equals("Category")) {
-                transactionViewModel.insert(new Transaction(value, TimeHelper.getNow().getTimeInMillis(), TimeHelper.getNow().getTimeInMillis(), "N/A", isAsk));
+                transactionViewModel.insert(new Transaction(value, TimeHelper.getNow().getTimeInMillis(), transactionViewModel.getFromSharedPref(), "N/A", isAsk));
             } else
-                transactionViewModel.insert(new Transaction(value, TimeHelper.getNow().getTimeInMillis(), 23L, category, isAsk));
+                transactionViewModel.insert(new Transaction(value, TimeHelper.getNow().getTimeInMillis(), transactionViewModel.getFromSharedPref(), category, isAsk));
         dialog.dismiss();
     }
     private void onDismissed(final DialogInterface dialog) {

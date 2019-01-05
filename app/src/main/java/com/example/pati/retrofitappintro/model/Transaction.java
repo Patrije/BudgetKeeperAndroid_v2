@@ -20,18 +20,18 @@ public class Transaction {
     private double value;
     @SerializedName("dateOfTransaction")
     private Long dateOfTransaction;
-    @SerializedName("employeeId")
-    private Long employeeId;
+    @SerializedName("employeeLogin")
+    private String employeeLogin;
     @SerializedName("category")
     private String category;
     @SerializedName("isAsk")
     private int isAsk;
 
 
-    public Transaction(double value, Long dateOfTransaction, Long employeeId, String category, int isAsk) {
+    public Transaction(double value, Long dateOfTransaction, String employeeLogin, String category, int isAsk) {
         this.value = value;
         this.dateOfTransaction = dateOfTransaction;
-        this.employeeId = employeeId;
+        this.employeeLogin = employeeLogin;
         this.category = category;
         this.isAsk=isAsk;
     }
@@ -71,12 +71,12 @@ public class Transaction {
         this.dateOfTransaction = dateOfTransaction;
     }
 
-    public Long getEmployeeId() {
-        return employeeId;
+    public String getEmployeeLogin() {
+        return employeeLogin;
     }
 
-    public void setEmployeeId(Long employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployeeId(String employeeLogin) {
+        this.employeeLogin = employeeLogin;
     }
 
     public String getCategory() {

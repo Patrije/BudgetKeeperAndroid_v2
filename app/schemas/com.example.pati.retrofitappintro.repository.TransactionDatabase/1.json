@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "d4ef907c2ce71f8964827f396022c6f4",
+    "identityHash": "3492821d3309ce27df9f2b75debf3262",
     "entities": [
       {
         "tableName": "Transaction",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`transactionId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `value` REAL NOT NULL, `dateOfTransaction` INTEGER, `employeeId` INTEGER, `category` TEXT, `isAsk` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`transactionId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `value` REAL NOT NULL, `dateOfTransaction` INTEGER, `employeeLogin` TEXT, `category` TEXT, `isAsk` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "transactionId",
@@ -27,9 +27,9 @@
             "notNull": false
           },
           {
-            "fieldPath": "employeeId",
-            "columnName": "employeeId",
-            "affinity": "INTEGER",
+            "fieldPath": "employeeLogin",
+            "columnName": "employeeLogin",
+            "affinity": "TEXT",
             "notNull": false
           },
           {
@@ -57,7 +57,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"d4ef907c2ce71f8964827f396022c6f4\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"3492821d3309ce27df9f2b75debf3262\")"
     ]
   }
 }
