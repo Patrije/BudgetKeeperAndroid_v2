@@ -4,7 +4,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
-import java.util.Date;
+import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by Pati on 11.11.2018.
@@ -14,20 +14,29 @@ import java.util.Date;
 public class Transaction {
 
     @PrimaryKey(autoGenerate = true)
-    private int transactionId;
+    @SerializedName("transactionId")
+    private long transactionId;
+    @SerializedName("value")
     private double value;
+    @SerializedName("dateOfTransaction")
     private Long dateOfTransaction;
-    private Long employeeId;
+    @SerializedName("employeeLogin")
+    private String employeeLogin;
+    @SerializedName("category")
     private String category;
+    @SerializedName("isAsk")
+    private int isAsk;
 
-    @Ignore
-    public Transaction(double value, Long dateOfTransaction, Long employeeId, String category) {
+
+    public Transaction(double value, Long dateOfTransaction, String employeeLogin, String category, int isAsk) {
         this.value = value;
         this.dateOfTransaction = dateOfTransaction;
-        this.employeeId = employeeId;
+        this.employeeLogin = employeeLogin;
         this.category = category;
+        this.isAsk=isAsk;
     }
 
+    @Ignore
     public Transaction(double value, Long dateOfTransaction, String category) {
         this.value = value;
         this.dateOfTransaction = dateOfTransaction;
@@ -38,11 +47,11 @@ public class Transaction {
     public Transaction() {
     }
 
-    public int getTransactionId() {
+    public long getTransactionId() {
         return transactionId;
     }
 
-    public void setTransactionId(int transactionId) {
+    public void setTransactionId(long transactionId) {
         this.transactionId = transactionId;
     }
 
@@ -62,12 +71,12 @@ public class Transaction {
         this.dateOfTransaction = dateOfTransaction;
     }
 
-    public Long getEmployeeId() {
-        return employeeId;
+    public String getEmployeeLogin() {
+        return employeeLogin;
     }
 
-    public void setEmployeeId(Long employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployeeId(String employeeLogin) {
+        this.employeeLogin = employeeLogin;
     }
 
     public String getCategory() {
@@ -76,5 +85,13 @@ public class Transaction {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public int getIsAsk() {
+        return isAsk;
+    }
+
+    public void setIsAsk(int ask) {
+        isAsk = ask;
     }
 }

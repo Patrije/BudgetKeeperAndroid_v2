@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "522a8e321ae595d0ccf73d09c267050d",
+    "identityHash": "3492821d3309ce27df9f2b75debf3262",
     "entities": [
       {
         "tableName": "Transaction",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`transactionId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `value` REAL NOT NULL, `dateOfTransaction` INTEGER, `employeeId` INTEGER, `category` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`transactionId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `value` REAL NOT NULL, `dateOfTransaction` INTEGER, `employeeLogin` TEXT, `category` TEXT, `isAsk` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "transactionId",
@@ -27,9 +27,9 @@
             "notNull": false
           },
           {
-            "fieldPath": "employeeId",
-            "columnName": "employeeId",
-            "affinity": "INTEGER",
+            "fieldPath": "employeeLogin",
+            "columnName": "employeeLogin",
+            "affinity": "TEXT",
             "notNull": false
           },
           {
@@ -37,6 +37,12 @@
             "columnName": "category",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "isAsk",
+            "columnName": "isAsk",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -51,7 +57,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"522a8e321ae595d0ccf73d09c267050d\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"3492821d3309ce27df9f2b75debf3262\")"
     ]
   }
 }
